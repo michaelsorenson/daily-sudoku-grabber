@@ -1,3 +1,4 @@
+cd /home/pi/daily-sudoku-grabber
 git pull origin master
 python3 dailySudokuGrabber.py
 pdflatex sudoku_puzzle.tex

@@ -1,4 +1,8 @@
+sudoku_puzzle*
+sudoku_solutions*
 __pycache__
+*.ipynb
 .DS_Store
 puzzle.pdf
 puzzle.tex
+.ipynb_checkpoints

@@ -16,11 +16,17 @@ def main():
     game = soup.findAll('div', {'class': 'pz-game-screen'})[0].find('script').text
     puzzles = json.loads(game[game.find('{'):game.rfind('}') + 1])
     todays_puzzle = puzzles['medium']['puzzle_data']['puzzle']
-    tex_str = get_tex_str(puzzle_to_latex(todays_puzzle))
-    # write to file
-    puzzle_file = open("puzzle.tex", "w")
-    puzzle_file.write(tex_str)
+    todays_puzzle_solutions = puzzles['medium']['puzzle_data']['solution']
+    puzzle_tex_str = get_tex_str(puzzle_to_latex(todays_puzzle))
+    solutions_tex_str = get_tex_str(puzzle_to_latex(todays_puzzle_solutions))
+    # write puzzle to file
+    puzzle_file = open("sudoku_puzzle.tex", "w")
+    puzzle_file.write(puzzle_tex_str)
     puzzle_file.close()
+    # write solutions to file
+    solutions_file = open("sudoku_solutions.tex", "w")
+    solutions_file.write(solutions_tex_str)
+    solutions_file.close()
 
 def puzzle_to_latex(puzzle_data):
     puzzle_str = ''

@@ -22,7 +22,7 @@ SOLUTIONS_STRINGS = [
     'I refuse to solve a sudoku puzzle on the grounds that I don’t know the solution. - Kacey',
     'My grandmother started walking five miles a day when she was sixty. She’s ninety-seven now, and we don’t know where the hell she is.',
     'A computer once beat me at chess, but it was no match for me at kick boxing.',
-    'I asked God for a bike, but I know God doesn’t work that way. So I stole a bike and asked for forgiveness.'
+    'I asked God for a bike, but I know God doesn’t work that way. So I stole a bike and asked for forgiveness.',
     'If you live to be one hundred, you’ve got it made. Very few people die past that age.
 ]
 def main():
@@ -44,10 +44,10 @@ def main():
     gpa_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandpa\'s Puzzle <3')
     solutions_tex_str = get_tex_file_str(puzzle_to_latex(todays_puzzle_solutions), random.choice(SOLUTIONS_STRINGS))
     # write puzzles to file
-    gma_puzzle_file = open("sudoku_puzzle_gma.tex", "w")
+    gma_puzzle_file = open("gma_sudoku_puzzle.tex", "w")
     gma_puzzle_file.write(gma_puzzle_tex_str)
     gma_puzzle_file.close()
-    gpa_puzzle_file = open("sudoku_puzzle_gpa.tex", "w")
+    gpa_puzzle_file = open("gpa_sudoku_puzzle.tex", "w")
     gpa_puzzle_file.write(gpa_puzzle_tex_str)
     gpa_puzzle_file.close()
     # write solutions to file

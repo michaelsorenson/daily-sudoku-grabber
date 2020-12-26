@@ -67,8 +67,8 @@ def puzzle_to_latex(puzzle_data):
 
 def get_tex_file_str(sudoku_string, subtitle):
     return '\\documentclass{article}\n\\usepackage{sudoku}\n\\usepackage{graphicx}\n\\graphicspath{ {./images/} }\n' +\
-    '\\title{Michael\'s Sudoku Mania\n\\includegraphics{icons/nytimes-icon.png} NYTimes Daily Sudoku}\n' +\
-    subtitle + '\n\\author{}\n\\begin{document}\n' +\
+    '\\title{Michael\'s Sudoku Mania\n\\includegraphics{icons/nytimes-icon.png} NYTimes Daily Sudoku\n' +\
+    subtitle + '}\n\\author{}\n\\begin{document}\n' +\
     '\\maketitle\n\n\\begin{sudoku}\n' +\
     sudoku_string + '\\end{sudoku}\n\n\\end{document}'
 

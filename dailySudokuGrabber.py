@@ -40,8 +40,8 @@ def main():
     todays_puzzle = puzzles['medium']['puzzle_data']['puzzle']
     todays_puzzle_solutions = puzzles['medium']['puzzle_data']['solution']
     puzzle_tex_str = puzzle_to_latex(todays_puzzle)
-    gma_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandma\'s Puzzle <3')
-    gpa_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandpa\'s Puzzle <3')
+    gma_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandma\'s Puzzle \\heart')
+    gpa_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandpa\'s Puzzle \\heart')
     solutions_tex_str = get_tex_file_str(puzzle_to_latex(todays_puzzle_solutions), random.choice(SOLUTIONS_STRINGS))
     # write puzzles to file
     gma_puzzle_file = open("gma_sudoku_puzzle.tex", "w")
@@ -66,8 +66,9 @@ def puzzle_to_latex(puzzle_data):
     return puzzle_str
 
 def get_tex_file_str(sudoku_string, subtitle):
-    return '\\documentclass{article}\n\\usepackage{sudoku}\n\\usepackage{graphicx}\n\\graphicspath{ {./images/} }\n' +\
-    '\\title{Michael\'s Sudoku Mania\n\\includegraphics{icons/nytimes-icon.png} NYTimes Daily Sudoku\n' +\
+    return '\\documentclass{article}\n\\usepackage{sudoku}\n\\usepackage{graphicx}\n' +\
+    '\\newcommand{\heart}{\ensuremath\heartsuit}\n\\graphicspath{ {./images/} }\n' +\
+    '\\title{Michael\'s Sudoku Mania || \\includegraphics{icons/nytimes-icon.png} NYTimes Daily Sudoku || ' +\
     subtitle + '}\n\\author{}\n\\begin{document}\n' +\
     '\\maketitle\n\n\\begin{sudoku}\n' +\
     sudoku_string + '\\end{sudoku}\n\n\\end{document}'

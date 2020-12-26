@@ -23,7 +23,7 @@ SOLUTIONS_STRINGS = [
     'My grandmother started walking five miles a day when she was sixty. She’s ninety-seven now, and we don’t know where the hell she is.',
     'A computer once beat me at chess, but it was no match for me at kick boxing.',
     'I asked God for a bike, but I know God doesn’t work that way. So I stole a bike and asked for forgiveness.',
-    'If you live to be one hundred, you’ve got it made. Very few people die past that age.
+    'If you live to be one hundred, you’ve got it made. Very few people die past that age.'
 ]
 def main():
     # get headless browser driver
@@ -68,7 +68,7 @@ def puzzle_to_latex(puzzle_data):
 def get_tex_file_str(sudoku_string, subtitle):
     return '\\documentclass{article}\n\\usepackage{sudoku}\n\\usepackage{graphicx}\n\\graphicspath{ {./images/} }\n' +\
     '\\title{Michael\'s Sudoku Mania\n\\includegraphics{icons/nytimes-icon.png} NYTimes Daily Sudoku}\n' +\
-    owner + '\n\\author{}\n\\begin{document}\n' +\
+    subtitle + '\n\\author{}\n\\begin{document}\n' +\
     '\\maketitle\n\n\\begin{sudoku}\n' +\
     sudoku_string + '\\end{sudoku}\n\n\\end{document}'
 

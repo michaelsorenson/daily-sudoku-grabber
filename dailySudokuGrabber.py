@@ -31,14 +31,14 @@ def main():
     options.headless = True
     driver = webdriver.Chrome(options=options)
     # get todays medium puzzle
-    driver.get('https://www.nytimes.com/puzzles/sudoku/medium')
+    driver.get('https://www.nytimes.com/puzzles/sudoku/easy')
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, features='lxml')
     # get medium puzzle and create latex string
     game = soup.findAll('div', {'class': 'pz-game-screen'})[0].find('script').text
     puzzles = json.loads(game[game.find('{'):game.rfind('}') + 1])
-    todays_puzzle = puzzles['medium']['puzzle_data']['puzzle']
-    todays_puzzle_solutions = puzzles['medium']['puzzle_data']['solution']
+    todays_puzzle = puzzles['easy']['puzzle_data']['puzzle']
+    todays_puzzle_solutions = puzzles['easy']['puzzle_data']['solution']
     puzzle_tex_str = puzzle_to_latex(todays_puzzle)
     gma_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandma\'s Puzzle \\heart')
     gpa_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandpa\'s Puzzle \\heart')

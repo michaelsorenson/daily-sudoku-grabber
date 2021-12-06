@@ -40,10 +40,14 @@ def main():
     todays_puzzle = puzzles['easy']['puzzle_data']['puzzle']
     todays_puzzle_solutions = puzzles['easy']['puzzle_data']['solution']
     puzzle_tex_str = puzzle_to_latex(todays_puzzle)
+    ang_mon_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Angela/Monica\'s Puzzle \\heart')
     gma_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandma\'s Puzzle \\heart')
     gpa_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandpa\'s Puzzle \\heart')
     solutions_tex_str = get_tex_file_str(puzzle_to_latex(todays_puzzle_solutions), random.choice(SOLUTIONS_STRINGS))
     # write puzzles to file
+    ang_mon_puzzle_file = open("ang_mon_sudoku_puzzle.tex", "w")
+    ang_mon_puzzle_file.write(ang_mon_puzzle_tex_str)
+    ang_mon_puzzle_file.close()
     gma_puzzle_file = open("gma_sudoku_puzzle.tex", "w")
     gma_puzzle_file.write(gma_puzzle_tex_str)
     gma_puzzle_file.close()

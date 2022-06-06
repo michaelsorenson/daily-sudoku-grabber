@@ -33,7 +33,7 @@ def main():
     # get todays medium puzzle
     driver.get('https://www.nytimes.com/puzzles/sudoku/easy')
     page_source = driver.page_source
-    soup = BeautifulSoup(page_source, features='lxml')
+    soup = BeautifulSoup(page_source, features='html.parser')
     # get easy puzzle and create latex string
     game = soup.find('div', {'role': 'grid'})
     cells = game.findAll('div', {'class': 'su-cell'})

@@ -34,16 +34,22 @@ def main():
     driver.get('https://www.nytimes.com/puzzles/sudoku/easy')
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, features='lxml')
-    # get medium puzzle and create latex string
-    game = soup.findAll('div', {'class': 'pz-game-screen'})[0].find('script').text
-    puzzles = json.loads(game[game.find('{'):game.rfind('}') + 1])
-    todays_puzzle = puzzles['easy']['puzzle_data']['puzzle']
-    todays_puzzle_solutions = puzzles['easy']['puzzle_data']['solution']
-    puzzle_tex_str = puzzle_to_latex(todays_puzzle)
-    ang_mon_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Angela/Monica\'s Puzzle \\heart')
-    gma_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandma\'s Puzzle \\heart')
-    gpa_puzzle_tex_str = get_tex_file_str(puzzle_tex_str, 'Grandpa\'s Puzzle \\heart')
-    solutions_tex_str = get_tex_file_str(puzzle_to_latex(todays_puzzle_solutions), random.choice(SOLUTIONS_STRINGS))
+    # get easy puzzle and create latex string
+    game = soup.find('div', {'role': 'grid'})
+    cells = game.findAll('div', {'class': 'su-cell'})
+    gameStr = ''
+    for cell in cells:
+        pos = cell['data-cell']
+        val = cell['aria-label']
+        if val == 'empty':
+            gameStr += '| '
+        else:
+            gameStr += '|' + str(val)
+        if (int(pos) + 1) % 9 == 0:
+            gameStr += '|.\n'
+    ang_mon_puzzle_tex_str = get_tex_file_str(gameStr, 'Angela/Monica\'s Puzzle \\heart')
+    gma_puzzle_tex_str = get_tex_file_str(gameStr, 'Grandma\'s Puzzle \\heart')
+    # gpa_puzzle_tex_str = get_tex_file_str(gameStr, 'Grandpa\'s Puzzle \\heart')
     # write puzzles to file
     ang_mon_puzzle_file = open("ang_mon_sudoku_puzzle.tex", "w")
     ang_mon_puzzle_file.write(ang_mon_puzzle_tex_str)
@@ -51,23 +57,9 @@ def main():
     gma_puzzle_file = open("gma_sudoku_puzzle.tex", "w")
     gma_puzzle_file.write(gma_puzzle_tex_str)
     gma_puzzle_file.close()
-    gpa_puzzle_file = open("gpa_sudoku_puzzle.tex", "w")
-    gpa_puzzle_file.write(gpa_puzzle_tex_str)
-    gpa_puzzle_file.close()
-    # write solutions to file
-    solutions_file = open("sudoku_solutions.tex", "w")
-    solutions_file.write(solutions_tex_str)
-    solutions_file.close()
-
-def puzzle_to_latex(puzzle_data):
-    puzzle_str = ''
-    for i in range(9):
-        for j in range(9):
-            cur_entry = puzzle_data[9 * i + j]
-            cur_entry = str(cur_entry) if cur_entry != 0 else ' '
-            puzzle_str += '|' + cur_entry
-        puzzle_str += '|.\n'
-    return puzzle_str
+    # gpa_puzzle_file = open("gpa_sudoku_puzzle.tex", "w")
+    # gpa_puzzle_file.write(gpa_puzzle_tex_str)
+    # gpa_puzzle_file.close()
 
 def get_tex_file_str(sudoku_string, subtitle):
     return '\\documentclass{article}\n\\usepackage{sudoku}\n\\usepackage{graphicx}\n' +\

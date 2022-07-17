@@ -50,6 +50,7 @@ def main():
     ang_mon_puzzle_tex_str = get_tex_file_str(gameStr, 'Angela/Monica\'s Puzzle \\heart')
     gma_puzzle_tex_str = get_tex_file_str(gameStr, 'Grandma\'s Puzzle \\heart')
     gpa_puzzle_tex_str = get_tex_file_str(gameStr, 'Grandpa\'s Puzzle \\heart')
+    gma_friend_puzzle_tex_str = get_tex_file_str(gameStr, 'Grandma\'s Friend\'s Puzzle \\heart')
     # write puzzles to file
     ang_mon_puzzle_file = open("ang_mon_sudoku_puzzle.tex", "w")
     ang_mon_puzzle_file.write(ang_mon_puzzle_tex_str)
@@ -60,6 +61,9 @@ def main():
     gpa_puzzle_file = open("gpa_sudoku_puzzle.tex", "w")
     gpa_puzzle_file.write(gpa_puzzle_tex_str)
     gpa_puzzle_file.close()
+    gma_friend_puzzle_file = open("gma_friend_sudoku_puzzle.tex", "w")
+    gma_puzzle_file.write(gma_friend_puzzle_tex_str)
+    gma_puzzle_file.close()
 
 def get_tex_file_str(sudoku_string, subtitle):
     return '\\documentclass{article}\n\\usepackage{sudoku}\n\\usepackage{graphicx}\n' +\

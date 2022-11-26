@@ -9,4 +9,5 @@ pdflatex gpa_sudoku_puzzle.tex
 lp gma_sudoku_puzzle.pdf
 #lp gpa_sudoku_puzzle.pdf
 lp gma_friend_sudoku_puzzle.pdf
+lp gma_friend_sudoku_puzzle.pdf
 rm *sudoku_puzzle.*
